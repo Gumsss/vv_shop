@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiUserMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.UserVo" id="userMap">
+        <result property="user_id" column="user_id"/>
+        <result property="open_id" column="open_id"/>
+        <result property="nickName" column="nickName"/>
+        <result property="gender" column="gender"/>
+        <result property="country" column="country"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="address_id" column="address_id"/>
+    </resultMap>
+
+    <select id="queryObject" resultType="com.example.demo.entity.UserVo">
+		select * from shop_user  where user_id = #{value}
+	</select>
+    <select id="queryByOpenId" resultType="com.example.demo.entity.UserVo">
+		select * from shop_user  where open_id = #{value}
+	</select>
+	<select id="queryAddress_Id" resultType="java.lang.Integer">
+		select address_id from shop_user where user_id = #{value}
+	</select>
+    <insert id="save" parameterType="com.example.demo.entity.UserVo" useGeneratedKeys="true" keyProperty="user_id">
+		insert into shop_user
+		(
+			`open_id`,
+			`nickName`,
+			`gender`,
+			`country`,
+			`province`,
+			`city`,
+			`address_id`
+		)
+		values
+			(
+				#{open_id},
+				#{nickName},
+				#{gender},
+				#{country},
+				#{province},
+				#{city},
+				#{address_id}
+			)
+	</insert>
+
+
+
+
+</mapper>

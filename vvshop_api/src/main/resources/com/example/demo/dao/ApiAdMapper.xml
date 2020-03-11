@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiAdMapper">
+
+    <resultMap type="com.example.demo.entity.AdVo" id="adMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="link" column="link"/>
+        <result property="image_url" column="image_url"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+
+    <select id="queryList" resultMap="adMap">
+		select * from shop_ad where enabled = 1
+	</select>
+</mapper>

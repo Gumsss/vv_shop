@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiAddressMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.AddressVo" id="addressMap">
+        <result property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="user_name" column="user_name"/>
+        <result property="tel_number" column="tel_number"/>
+        <result property="detail_Info" column="detail_Info"/>
+        <result property="region" column="region"/>
+		<result property="default" column="default"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.example.demo.entity.AddressVo" useGeneratedKeys="true" keyProperty="id">
+		insert into shop_address(
+			`user_id`,
+			`user_name`,
+			`tel_number`,
+			`detail_Info`,
+			`region`)
+		values(
+			#{user_id},
+			#{user_name},
+			#{tel_number},
+			#{detail_Info},
+			#{region})
+	</insert>
+	<select id="queryList" resultMap="addressMap">
+		select * from shop_address where user_id = #{value}
+	</select>
+	<delete id="delete">
+		delete from shop_address where id = #{value}
+	</delete>
+	<select id="queryObject" resultMap="addressMap">
+		select * from shop_address where id = #{value}
+	</select>
+	<update id="setDefault"  parameterType="java.util.Map">
+		update shop_user
+		<set>
+
+			<if test="id != null">`address_id` = #{id}</if>
+
+		</set>
+		where user_id = #{user_id}
+	</update>
+
+	<update id="updata" parameterType="com.example.demo.entity.AddressVo">
+		update shop_address
+		<set>
+			<if test="user_id != null">`user_id = #{user_id}, </if>
+			<if test="user_name != null">`user_name` = #{user_name}, </if>
+			<if test="tel_number != null">`tel_number` = #{tel_number}, </if>
+			<if test="region != null">`region` = #{region}, </if>
+			<if test="detail_Info != null">`detail_Info` =  #{detail_Info},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+
+
+</mapper>

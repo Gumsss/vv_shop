@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="help cont-box b-f">
+    <view>
+      <text class="h4">{{title}}</text>
+    </view>
+    <view>
+      <text class="p">{{content}}</text>
+    </view>
+  </view>
+</view>

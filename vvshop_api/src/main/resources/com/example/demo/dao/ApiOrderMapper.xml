@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiOrderMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.OrderVo" id="orderMap">
+		<result property="id" column="id"/>
+		<result property="order_no" column="order_no"/>
+		<result property="user_id" column="user_id"/>
+		<result property="total_price" column="total_price"/>
+		<result property="pay_status" column="pay_status"/>
+		<result property="express_price" column="express_price"/>
+		<result property="assess_status" column="assess_status"/>
+		<result property="order_status" column="order_status"/>
+		<result property="user_name" column="user_name"/>
+		<result property="detail_Info" column="detail_Info"/>
+		<result property="tel_number" column="tel_number"/>
+		<result property="region" column="region"/>
+		<result property="create_time" column="create_time"/>
+		<result property="transaction_id" column="transaction_id"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.example.demo.entity.OrderVo" useGeneratedKeys="true" keyProperty="id">
+		insert into shop_order(
+			`order_no`,
+			`user_id`,
+			`total_price`,
+			`pay_status`,
+			`express_price`,
+			`assess_status`,
+			`order_status`,
+			`user_name`,
+			`detail_Info`,
+			`tel_number`,
+			`region`,
+			`create_time`
+			)
+		values(
+			#{order_no},
+			#{user_id},
+			#{total_price},
+			#{pay_status},
+			#{express_price},
+			#{assess_status},
+			#{order_status},
+			#{user_name},
+			#{detail_Info},
+			#{tel_number},
+			#{region},
+			#{create_time})
+	</insert>
+
+	<select id="queryList" resultMap="orderMap">
+		select * from shop_order where order_status = #{order_status} and user_id = #{user_id}
+	</select>
+	<delete id="delete">
+		delete from shop_order where id = #{id}
+	</delete>
+	<select id="queryOrder_no" resultMap="orderMap">
+		select order_no from shop_order where id = #{id}
+	</select>
+	<select id="queryAllList" resultMap="orderMap">
+		select * from shop_order where  user_id = #{user_id}
+	</select>
+	<update id="update" parameterType="com.example.demo.entity.OrderVo">
+		update shop_order
+		<set>
+			<if test="order_status != null">`order_status` = 20, </if>
+
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateFin" parameterType="com.example.demo.entity.OrderVo">
+		update shop_order
+		<set>
+			<if test="order_status != null">`order_status` = 40, </if>
+
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateAssess" parameterType="com.example.demo.entity.OrderVo">
+		update shop_order
+		<set>
+			<if test="assess_status != null">`assess_status` = 20, </if>
+
+		</set>
+		where id = #{id}
+	</update>
+	<select id="queryObject" resultMap="orderMap">
+		select * from shop_order where id = #{id}
+	</select>
+</mapper>

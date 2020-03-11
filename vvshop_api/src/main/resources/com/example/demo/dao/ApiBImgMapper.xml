@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiBImgMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.B_imgVo" id="imgMap">
+        <result property="id" column="id"/>
+        <result property="goods_id" column="goods_id"/>
+        <result property="b_img" column="b_img"/>
+        <result property="judge" column="judge"/>
+
+    </resultMap>
+
+    <select id="queryBImgList" resultMap="imgMap">
+		select * from shop_goods_image where goods_id = #{value}
+	</select>
+
+
+
+
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiOrderDetailMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.OrderDetailVo" id="orderDetailMap">
+
+    </resultMap>
+
+    <insert id="saveDetail" parameterType="com.example.demo.entity.OrderDetailVo" useGeneratedKeys="true" keyProperty="id">
+		insert into shop_order_detail(
+			`goods_id`,
+			`order_no`,
+			`count`,
+			`goods_name`,
+			`goods_img_url`,
+			`counter_price`,
+			`user_id`
+			)
+		values(
+			#{goods_id},
+			#{order_no},
+			#{count},
+			#{goods_name},
+			#{goods_img_url},
+			#{counter_price},
+			#{user_id}
+			)
+	</insert>
+	<select id="queryList" resultMap="orderDetailMap">
+		select * from shop_order_detail where order_no = #{order_no}
+	</select>
+
+	<delete id="delete">
+		delete from shop_order_detail where order_no = #{order_no}
+	</delete>
+	<select id="queryListGetOrder_no" resultMap="orderDetailMap">
+		select * from shop_order_detail where goods_id = #{goods_id}
+	</select>
+</mapper>

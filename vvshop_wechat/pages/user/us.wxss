@@ -1,0 +1,20 @@
+.help {
+    border-bottom: 1px solid #f6f6f9;
+    height: 600px;
+}
+
+.help .h4 {
+   position: relative;
+    font-size: 50rpx;
+    color: #333;
+    margin-left: 270rpx;
+   line-height: 200px;
+}
+
+.help .p {
+    font-size: 40rpx;
+    color: rgb(247, 23, 23);
+    margin-left: 70rpx;
+    
+     
+}

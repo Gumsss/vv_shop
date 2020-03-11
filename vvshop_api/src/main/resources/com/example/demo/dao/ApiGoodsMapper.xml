@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiGoodsMapper">
+
+    <resultMap type="com.example.demo.entity.GoodsVo" id="goodsMap">
+
+        <result property="goods_id" column="goods_id"/>
+        <result property="category_id" column="category_id"/>
+        <result property="goods_name" column="goods_name"/>
+        <result property="spec_type" column="spec_type"/>
+        <result property="deduct_stock_type" column="deduct_stock_type"/>
+        <result property="content" column="content"/>
+        <result property="sales_actual" column="sales_actual"/>
+        <result property="goods_sort" column="goods_sort"/>
+        <result property="goods_status" column="goods_status"/>
+        <result property="is_delete" column="is_delete"/>
+        <result property="counter_price" column="counter_price"/>
+        <result property="stock_num" column="stock_num"/>
+        <result property="is_new" column="is_new"/>
+        <result property="is_hot" column="is_hot"/>
+        <result property="goods_img_url" column="goods_img_url"/>
+        <result property="b_img" column="b_img"/>
+        <result property="c_img" column="c_img"/>
+    </resultMap>
+
+    <select id="queryGoodsList" resultMap="goodsMap">
+		select * from shop_goods where is_new = 1
+	</select>
+    <select id="queryHotList" resultMap="goodsMap">
+		select * from shop_goods where is_hot = 1
+	</select>
+    <select id="queryGoodsDetail" resultMap="goodsMap">
+		select * from shop_goods where goods_id = #{value}
+	</select>
+    <select id="queryCategoryList" resultMap="goodsMap">
+		select * from shop_goods where category_id = #{value}
+	</select>
+
+</mapper>

@@ -1,0 +1,119 @@
+<view class="container p-bottom">
+  <!-- 配送地址 -->
+  <view catchtap="selectAddress">
+    <view wx:if="{{address.id}}">
+      <view class="b-f">
+        <view class="flow-checkout-header">
+          <text class="iconfont icon-dingwei1"></text>
+          <view class="flow-header-left">
+            <view class="flow-checkout-admin f-30 col-3">
+              <text>{{address.user_name}}</text>
+              <text>{{address.tel_number}}</text>
+              <text class="col-m"></text>
+            </view>
+            <view class="flow-checkout-address">
+              {{address.region}} {{address.detail_Info}}
+            </view>
+          </view>
+          <view class="flow-header-right pr-12">
+            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="flow-checkout-header">
+        <text class="iconfont icon-dingwei1"></text>
+        <view class="flow-header-left">
+          <view class="f-28 col-6">去选择配送地址
+          </view>
+        </view>
+        <view class="flow-header-right p-r15">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="m-top20">
+   <view wx:if = "{{check}}">
+    <view class="checkout_list " wx:for="{{cart}}" wx:key="this">
+      <navigator url="../goods/index?goods_id={{item.goods_id}}">
+        <view class="dis-flex flow-shopList" data-index="{{index}}">
+          <view class="flow-list-left">
+            <image mode="scaleToFill" src="{{item.goods_img_url}}"></image>
+          </view>
+          <view class="flow-list-right">
+            <text class="f-30 col-3 twolist-hidden">{{item.goods_name}}</text>
+            
+            <view class="flow-list-cont">
+              <text class="flow-cont">￥{{item.counter_price}}</text>
+              <text class="small">×{{item.count}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    </view>
+<view wx:else>
+     <view class="checkout_list " >
+      <navigator url="../goods/index?goods_id={{cart.goods_id}}">
+        <view class="dis-flex flow-shopList" data-index="{{index}}">
+          <view class="flow-list-left">
+            <image mode="scaleToFill" src="{{cart.goods_img_url}}"></image>
+          </view>
+          <view class="flow-list-right">
+            <text class="f-30 col-3 twolist-hidden">{{cart.goods_name}}</text>
+            
+            <view class="flow-list-cont">
+              <text class="flow-cont">￥{{cart.counter_price}}</text>
+              <text class="small">×{{goods_num}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+</view>
+    <view class="flow-num-box b-f padding-box">
+     
+      <text class="flow-money col-m">￥{{totalMoney}}</text>
+    </view>
+  </view>
+
+  <!-- 商品金额 -->
+  <view class="flow-all-money b-f padding-box m-top20">
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">商品总金额:</text>
+      <view class="flex-five t-r">
+        <text class="col-m">￥{{totalMoney}}</text>
+      </view>
+    </view>
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">配送费用:</text>
+      <view class="flex-five t-r">
+        <view wx:if="{{address.id}}">
+          <text class="col-m">+￥10</text>
+          
+        </view>
+        <view wx:else>
+          <text class="col-7">请先选择配送地址</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交订单 -->
+  <view class="flow-fixed-footer b-f m-top10">
+    <view class="dis-flex chackout-box">
+      <view class=" chackout-left pl-12 ">实付款：
+        <text class="col-m">￥{{totalMoney+10}}</text>
+      </view>
+      <view bindtap="submitOrder" class="chackout-right">
+        <text class="flow-btn">提交订单</text>
+      </view>
+    </view>
+  </view>
+
+ 
+</view>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiCategoryMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.CategoryVo" id="categoryMap">
+
+        <result property="id" column="id"/>
+        <result property="category_id" column="category_id"/>
+        <result property="category_name" column="category_name"/>
+    </resultMap>
+
+    <select id="queryCategorySpe" resultMap="categoryMap">
+		select * from shop_goods_category
+	</select>
+
+
+
+</mapper>

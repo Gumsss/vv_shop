@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApiAssessMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.entity.AssessVo" id="assessMap">
+        <result property="id" column="id"/>
+		<result property="order_no" column="order_no"/>
+        <result property="user_id" column="user_id"/>
+        <result property="text" column="text"/>
+        <result property="score" column="score"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.example.demo.entity.AssessVo" useGeneratedKeys="true" keyProperty="id">
+		insert into shop_assess(
+			`order_no`,
+			`user_id`,
+			`text`,
+			`score`,
+			`create_time`)
+		values(
+			#{order_no},
+			#{user_id},
+			#{text},
+			#{score},
+			#{create_time})
+	</insert>
+	<select id="queryObject" resultMap="assessMap">
+		select * from shop_assess where order_no = #{order_no}
+	</select>
+</mapper>
